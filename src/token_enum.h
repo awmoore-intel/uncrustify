@@ -84,6 +84,11 @@ enum E_Token
    CT_PARAMETER_PACK,      // template<typename ... ARGS>
    CT_WHERE_SPEC,          // 'where' : used in C# generic constraint
 
+   CT_HEADER_OPEN,
+   CT_HEADER_CLOSE,
+   CT_DML_LOG,
+   CT_DML_LOG_INFO,
+
    CT_ASSIGN,              // =, +=, /=, etc
    CT_ASSIGN_NL,           // Assign followed by a newline - fake item for indenting
    CT_SASSIGN,             // 'and_eq'

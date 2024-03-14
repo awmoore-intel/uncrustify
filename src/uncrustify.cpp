@@ -2572,6 +2572,7 @@ static lang_name_t language_names[] =
    { "OC+",      LANG_OC | LANG_CPP           },      // 0x0020 + 0x0002
    { "CS+",      LANG_CS | LANG_CPP           },      // 0x0008 + 0x0002
    { "C-Header", LANG_C | LANG_CPP | FLAG_HDR },      // 0x0001 + 0x0002 + 0x2000 = 0x2022
+   { "DML",      LANG_DML                     },      // 0x0200
 };
 
 
@@ -2623,6 +2624,7 @@ struct lang_ext_t
 //! known filename extensions linked to the corresponding programming language
 struct lang_ext_t language_exts[] =
 {
+   { ".dml",  "DML"        },
    { ".c",    "C"        },
    { ".c++",  "CPP"      },
    { ".cc",   "CPP"      },

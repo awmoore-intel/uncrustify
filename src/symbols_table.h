@@ -78,6 +78,8 @@ static const chunk_tag_t symbols2[] =
    { "##",      CT_PP,           LANG_C | LANG_CPP | LANG_OC            },                     // 4
    { "#@",      CT_POUND,        LANG_C | LANG_CPP | LANG_OC            },                     // MS extension
    { "%=",      CT_ASSIGN,       LANG_ALL                               },                     // 6
+   { "%{",      CT_HEADER_OPEN,  LANG_DML                               },                     // 6
+   { "%}",      CT_HEADER_CLOSE, LANG_DML                               },                     // 6
    { "&&",      CT_BOOL,         LANG_ALL                               },                     // 7
    { "&=",      CT_ASSIGN,       LANG_ALL                               },                     // 8
    { "*=",      CT_ASSIGN,       LANG_ALL                               },                     // 9
@@ -85,8 +87,8 @@ static const chunk_tag_t symbols2[] =
    { "+=",      CT_ASSIGN,       LANG_ALL                               },                     // 11
    { "--",      CT_INCDEC_AFTER, LANG_ALL                               },                     // 12
    { "-=",      CT_ASSIGN,       LANG_ALL                               },                     // 13
-   { "->",      CT_MEMBER,       LANG_ALLC                              },                     // 14
-   { ".*",      CT_MEMBER,       LANG_C | LANG_CPP | LANG_OC | LANG_D   },                     // 15
+   { "->",      CT_MEMBER,       LANG_ALLC | LANG_DML                   },                     // 14
+   { ".*",      CT_MEMBER,       LANG_C | LANG_CPP | LANG_OC | LANG_D | LANG_DML  },                     // 15
    { "..",      CT_RANGE,        LANG_D                                 },                     // 16
    { "?.",      CT_NULLCOND,     LANG_CS                                },                     // null conditional operator
    { "/=",      CT_ASSIGN,       LANG_ALL                               },                     // 18
@@ -135,7 +137,7 @@ static const chunk_tag_t symbols1[] =
    { "<",       CT_ANGLE_OPEN,   LANG_ALL                            },
    { "=",       CT_ASSIGN,       LANG_ALL                            },
    { ">",       CT_ANGLE_CLOSE,  LANG_ALL                            },
-   { "@",       CT_OC_AT,        LANG_OC                             },
+   { "@",       CT_OC_AT,        LANG_OC|LANG_DML                    },
    { "?",       CT_QUESTION,     LANG_ALL                            },
    { "[",       CT_SQUARE_OPEN,  LANG_ALL                            },
    { "]",       CT_SQUARE_CLOSE, LANG_ALL                            },

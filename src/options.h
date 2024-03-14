@@ -1033,6 +1033,11 @@ sp_sign; // = IARF_REMOVE
 extern Option<iarf_e>
 sp_incdec; // = IARF_REMOVE
 
+// Add or remove space between '++' and '--' the word to which it is being
+// applied, as in '(--x)' or 'y++;'.
+extern Option<iarf_e>
+sp_dml_log; // = IARF_REMOVE
+
 // Add or remove space before a backslash-newline at the end of a line.
 extern Option<iarf_e>
 sp_before_nl_cont; // = IARF_ADD

@@ -2680,6 +2680,11 @@ void tokenize(const deque<int> &data, Chunk *ref)
          chunk.SetType(CT_LAMBDA);
       }
 
+         // Check for a preprocessor start
+         if (  chunk.Is(CT_POUND) && language_is_set(LANG_DML) ) {
+            chunk.SetType(CT_IGNORED);
+         }
+
       // Don't create an entry for whitespace
       if (chunk.GetType() == CT_WHITESPACE)
       {
@@ -2823,7 +2828,6 @@ void tokenize(const deque<int> &data, Chunk *ref)
       }
       else
       {
-         // Check for a preprocessor start
          if (  pc->Is(CT_POUND)
             && (  rprev->IsNullChunk()
                || rprev->Is(CT_NEWLINE)))

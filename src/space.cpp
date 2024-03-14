@@ -637,7 +637,7 @@ static iarf_e do_space(Chunk *first, Chunk *second, int &min_sp)
    }
 
    // "a,b" vs. "a, b"
-   if (first->Is(CT_COMMA))                         // see the tests cpp:34520-34524
+   if (first->Is(CT_COMMA) && first->GetParentType() != CT_DML_LOG)                         // see the tests cpp:34520-34524
    // see the tests c-sharp:12200-12202
    {
       if (  language_is_set(LANG_CS | LANG_VALA)
@@ -2500,6 +2500,15 @@ static iarf_e do_space(Chunk *first, Chunk *second, int &min_sp)
       return(IARF_REMOVE);
    }
 
+   if (first->GetParentType() == CT_DML_LOG) {
+      if (first->Is(CT_COMMA) || second->Is(CT_WORD) || second->Is(CT_STRING) || second->Is(CT_NUMBER)) {
+         return(IARF_FORCE);
+      }
+      log_rule("sp_dml_log") ;
+      return(IARF_REMOVE);
+      return(options::sp_dml_log());
+   }
+
    if (first->Is(CT_PTR_TYPE))                            // see the tests cpp:34505-34508
    {
       if (  second->Is(CT_FPAREN_OPEN)
@@ -2974,6 +2983,11 @@ static iarf_e do_space(Chunk *first, Chunk *second, int &min_sp)
       // or '+(int) bar;'.
       log_rule("sp_after_oc_scope");
       return(options::sp_after_oc_scope());
+   }
+
+   if (  language_is_set(LANG_DML)
+      && (first->Is(CT_OC_DICT_COLON) || second->Is(CT_OC_DICT_COLON))) {
+         return(IARF_REMOVE);
    }
 
    if (  language_is_set(LANG_OC)

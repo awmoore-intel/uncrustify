@@ -63,6 +63,7 @@ static size_t      language_count;
 static chunk_tag_t keywords[] =
 {
    // TODO: it might be useful if users could add their custom keywords to this list
+
    { "@autoreleasepool",                CT_AUTORELEASEPOOL,  LANG_OC                                                                     },
    { "@available",                      CT_OC_AVAILABLE,     LANG_OC                                                                     },
    { "@catch",                          CT_CATCH,            LANG_OC                                                                     },
@@ -248,6 +249,7 @@ static chunk_tag_t keywords[] =
    { "import",                          CT_PP_INCLUDE,       LANG_OC | FLAG_PP                                                           },
    { "in",                              CT_IN,               LANG_D | LANG_CS | LANG_VALA | LANG_ECMA | LANG_OC                          },
    { "include",                         CT_PP_INCLUDE,       LANG_C | LANG_CPP | LANG_OC | LANG_PAWN | FLAG_PP                           },
+   //{ "info",                            CT_DML_LOG_INFO,     LANG_DML                                                                    },
    { "inline",                          CT_QUALIFIER,        LANG_C | LANG_CPP                                                           },
    { "inout",                           CT_QUALIFIER,        LANG_D                                                                      },
    { "instanceof",                      CT_SIZEOF,           LANG_JAVA | LANG_ECMA                                                       },
@@ -256,10 +258,11 @@ static chunk_tag_t keywords[] =
    { "internal",                        CT_QUALIFIER,        LANG_CS | LANG_VALA                                                         },
    { "invariant",                       CT_INVARIANT,        LANG_D                                                                      },
    { "ireal",                           CT_TYPE,             LANG_D                                                                      },
-   { "is",                              CT_SCOMPARE,         LANG_D | LANG_CS | LANG_VALA                                                },
+   { "is",                              CT_SCOMPARE,         LANG_D | LANG_CS | LANG_VALA | LANG_DML                                     },
    { "lazy",                            CT_LAZY,             LANG_D                                                                      },
    { "line",                            CT_PP_LINE,          LANG_PAWN | FLAG_PP                                                         },
    { "lock",                            CT_LOCK,             LANG_CS | LANG_VALA                                                         },
+   { "log",                             CT_DML_LOG,          LANG_DML                                                                    },
    { "long",                            CT_TYPE,             LANG_ALLC                                                                   },
    { "macro",                           CT_D_MACRO,          LANG_D                                                                      },
    { "mixin",                           CT_CLASS,            LANG_D                                                                      }, // may need special handling
@@ -329,7 +332,7 @@ static chunk_tag_t keywords[] =
    { "template",                        CT_TEMPLATE,         LANG_CPP | LANG_D                                                           },
    { "this",                            CT_THIS,             LANG_CPP | LANG_CS | LANG_D | LANG_JAVA | LANG_VALA | LANG_ECMA             },
    { "throw",                           CT_THROW,            LANG_CPP | LANG_CS | LANG_VALA | LANG_D | LANG_JAVA | LANG_ECMA             },
-   { "throws",                          CT_QUALIFIER,        LANG_JAVA | LANG_ECMA | LANG_VALA                                           },
+   { "throws",                          CT_QUALIFIER,        LANG_JAVA | LANG_ECMA | LANG_VALA | LANG_DML                                },
    { "transient",                       CT_QUALIFIER,        LANG_JAVA | LANG_ECMA                                                       },
    { "true",                            CT_WORD,             LANG_ALL                                                                    },
    { "try",                             CT_TRY,              LANG_CPP | LANG_CS | LANG_D | LANG_JAVA | LANG_ECMA | LANG_VALA             },

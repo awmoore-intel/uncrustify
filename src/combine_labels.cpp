@@ -129,6 +129,33 @@ void combine_labels()
          }
       }
 
+      if ( next->Is(CT_DML_LOG)) {
+         //next->SetParentType(CT_DML_LOG);
+         // Find the brace pair and set the parent
+         Chunk *tmp = next->GetNextNcNnl();
+
+         while (  tmp->IsNotNullChunk()
+               && tmp->IsNot(CT_SEMICOLON))
+         {
+            LOG_FMT(LFCN, "%s(%d): (13) SET TO CT_FUNC_DEF: orig line is %zu, orig col is %zu, Text() '%s'\n",
+                     __func__, __LINE__, tmp->GetOrigLine(), tmp->GetOrigCol(), tmp->Text());
+            tmp->SetParentType(CT_DML_LOG);
+
+            if (tmp->Is(CT_LABEL_COLON))
+            {
+               tmp->SetType(CT_WORD);
+            }
+            tmp = tmp->GetNextNcNnl();
+         }
+      }
+   
+
+
+
+
+
+
+
       if (  next->Is(CT_QUESTION)
          && !next->TestFlags(PCF_IN_TEMPLATE))
       {
@@ -305,7 +332,7 @@ void combine_labels()
                         next->SetType(CT_LABEL_COLON);
                      }
                   }
-                  else
+                  else if( !language_is_set(LANG_DML))
                   {
                      cur->SetType(CT_LABEL);
                      next->SetType(CT_LABEL_COLON);
@@ -411,6 +438,10 @@ void combine_labels()
                      // ignore it, as it is a C# base thingy
                   }
                   else if (language_is_set(LANG_CS | LANG_D))
+                  {
+                     // there should be a better solution for that
+                  }
+                  else if (language_is_set(LANG_DML))
                   {
                      // there should be a better solution for that
                   }

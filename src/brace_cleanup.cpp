@@ -191,6 +191,11 @@ void brace_cleanup()
    {
       LOG_CHUNK(LTOK, pc);
 
+      if(language_is_set(LANG_DML)) {
+         pc = pc->GetNext();
+         continue;
+      }
+
       // Check for leaving a #define body
       if (  braceState.in_preproc != CT_NONE
          && !pc->TestFlags(PCF_IN_PREPROC))
